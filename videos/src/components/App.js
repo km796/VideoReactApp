@@ -6,6 +6,10 @@ import VideoList from "./VideoList";
 class App extends React.Component {
     state = {videos: []}
 
+    onVideoSelected = (video) => {
+        console.log(video)
+    }
+
     onFormSubmit = async term => {
         const response = await youtube.get('/search', {
             params: {
@@ -19,7 +23,8 @@ class App extends React.Component {
         return (
             <div className="ui container">
                 <SearchBar onFormSubmit={this.onFormSubmit}/>
-                <VideoList videos={this.state.videos} />
+                <VideoList videos={this.state.videos}
+                 onVideoSelected = {this.onVideoSelected}/>
             </div>
         )
     }
